@@ -1,0 +1,15 @@
+<table>
+	<caption>新增人员</caption>
+	<thead>
+		<tr>
+			<td>ID</td>
+			<td>名称</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="people in addpeoples">
+			<td ng-bind="people.id"></td>
+			<td ng-bind="people.name"></td>
+		</tr>
+	</tbody>
+</table>

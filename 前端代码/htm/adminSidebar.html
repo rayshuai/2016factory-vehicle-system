@@ -1,0 +1,36 @@
+<li class="bold">
+	<ul class="collapsible collapsible-accordion">
+		<li class="bold">
+			<div class="collapsible-header waves-effect waves-light" ui-sref="admin.showStations">
+				<i class="material-icons">golf_course</i>站点信息管理
+			</div>
+		</li>
+		<li class="bold">
+			<div class="collapsible-header waves-effect waves-light" ui-sref="admin.showPeople">
+				<i class="material-icons">face</i>人员站点管理
+			</div>
+		</li>
+		<li class="bold">
+			<div class="collapsible-header waves-effect waves-light" ui-sref="admin.showReport">
+				<i class="material-icons">assignment</i>导出数据报表
+			</div>
+		</li>
+	</ul>
+</li>
+
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('.tooltipped').tooltip({delay:50});
+			$(".dropdown-button").dropdown({
+				inDuration: 300,
+				outDuration: 150,
+				hover: true,
+				belowOrigin: true
+			});
+			$('.collapsible').collapsible({
+				accordion: false
+			});
+			$('.button-collapse').sideNav();
+		});
+</script>

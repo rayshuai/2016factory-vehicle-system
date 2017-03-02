@@ -1,0 +1,196 @@
+<div id="map-people"></div>
+
+<div id="people-table">
+	<div class="search-staff">
+		<input type="text" placeholder="请输入要查询的员工信息" ng-model="searchCondition">
+		<div class="search-action" ng-click="searchStaffFunc()">
+			<i class="material-icons md-light md-36">search</i>
+		</div>
+	</div>
+
+	<div id="panel-level01" class="panel">
+		<div class="goback" ng-click="showLevel05()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">进行员工站点智能规划</a>
+		</div>
+		<ul class="collapsible" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">目前，共有<strong ng-bind="staffList.length"></strong>名员工</a>
+				</div>
+				<div class="collapsible-body">
+					<table class="bordered">
+						<thead>
+							<tr>
+								<td>员工名称</td>
+								<td>当前乘车站点</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="staff in staffList" ng-click="showEmployeeSta(staff)">
+								<td ng-bind="staff.e_name"></td>
+								<td ng-bind="staff.s_name"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div id="panel-level02" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel01()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看全部员工信息</a>
+		</div>
+		<ul class="collapsible" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">共有<strong ng-bind="searchStaffList.length"></strong>条搜索结果</a>
+				</div>
+				<div class="collapsible-body">
+					<table class="bordered">
+						<thead>
+							<tr>
+								<td>员工名称</td>
+								<td>当前乘车站点</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="staff in searchStaffList" ng-click="showEmployeeSta(staff)">
+								<td ng-bind="staff.e_name"></td>
+								<td ng-bind="staff.s_name"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div id="panel-level03" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel01()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看全部员工信息</a>
+		</div>
+		<div class="card blue-grey darken-1">
+			<div class="card-content white-text">
+				<span class="card-title" ng-bind="chosenStaff.e_name"></span><br>
+				<span class="col row">编号：<strong ng-bind="chosenStaff.e_id"></strong></span>
+				<span class="col row">部门：<strong>总务部</strong></span>
+				<span class="col row">住址：<strong ng-bind="chosenStaff.e_address"></strong></span>
+				<span class="col row">站点：<strong ng-bind="chosenStaff.s_name"></strong></span>
+			</div>
+			<div class="card-action">
+				<a href="javascript:void(0)" class="change-station" ng-click="updateEmployeeSta()">修改站点</a>
+				<a href="javascript:void(0)" ng-click="searchNear()">查看附近站点</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="panel-level04" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel02()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看搜索信息</a>
+		</div>
+		<div class="card blue-grey darken-1">
+			<div class="card-content white-text">
+				<span class="card-title" ng-bind="chosenStaff.e_name"></span><br>
+				<span class="col row">编号：<strong ng-bind="chosenStaff.e_id"></strong></span>
+				<span class="col row">部门：<strong>总务部</strong></span>
+				<span class="col row">住址：<strong ng-bind="chosenStaff.e_address"></strong></span>
+				<span class="col row">站点：<strong ng-bind="chosenStaff.s_name"></strong></span>
+			</div>
+			<div class="card-action">
+				<a href="javascript:void(0)" class="change-station" ng-click="updateEmployeeSta()">修改站点</a>
+				<a href="javascript:void(0)" ng-click="searchNear()">查看附近站点</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="panel-level05" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel01()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看全部员工信息</a>
+		</div>
+		<ul class="collapsible" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">员工站点智能规划</a>
+				</div>
+				<div class="collapsible-body">
+					<table class="bordered hoverable">
+						<thead>
+							<tr>
+								<td>员工姓名</td>
+								<td>智能匹配站点</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="staff in guihuaList">
+								<td ng-bind="staff.eid[0].e_name"></td>
+								<td ng-bind="staff.sid.s_name"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div class="fixed-action-btn" style="right:1%;bottom:3%;">
+		<a class="btn-floating btn-large red tooltipped waves-effect waves-lignt export" data-position="left" data-delay="50" data-tooltip="同步员工信息">
+			<i class="material-icons">assessment</i>
+		</a>
+	</div>
+
+</div>
+
+<div id="change-sta" class="modal" style="width:320px;">
+	<div class="modal-content">
+		<div class="row">
+			<form class="col s12">
+				<div class="row">
+					<select ng-model="chosenStaff.s_id" ng-options="station.id as station.name for station in stations"></select>
+					<option value="" disabled>请选择你要更换的站点</option>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+      	<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="updateEmployeeSta()">确认</a>
+	</div>
+</div>
+
+<div id="success-change-sta" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>该员工的站点修改成功！</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<div id="match" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>员工信息同步成功！</p>
+	</div>
+	<div id="modal-footer">
+		<a href="javascrit:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		$('.collapsible').collapsible();
+		$('.dropdown-button').dropdown();
+		$('.tooltipped').tooltip({delay:50});
+		$('#people-table').find('.fixed-action-btn').click(function(){
+			$('#match').openModal();
+		})
+		// $('#people-table').find('.change-station').click(function(){
+		// 	$('#change-sta').openModal();
+		// });
+	});
+</script>

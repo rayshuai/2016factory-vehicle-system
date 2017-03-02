@@ -1,0 +1,262 @@
+#map-stations {
+	width: 100%;
+	height: 100%;
+
+}
+#station-table {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+
+	width: 360px;
+}
+#station-table .search-station {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 1);
+}
+#station-table .search-station input {
+	margin-left: 10px;
+	width: 300px;
+	height: 40px;
+	border: none;
+	box-shadow: none;
+}
+#station-table .search-station .search-action {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 40px;
+	border-radius: 0 4px 4px 0;
+	background-color: #3385ff;
+	cursor: pointer;
+}
+#station-table .search-station .search-action i {
+	margin-top: 5px;
+	margin-left: 5px;
+	font-size: 30px;
+	color: rgba(255, 255, 255, 0.8);
+}
+#station-table .search-station .search-action i:hover {
+	color: #fff;
+}
+#station-table .panel {
+	margin-top: 10px;
+	width: 320px;
+}
+#station-table .panel .goback {
+	position: relative;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background-color: #fff;
+	cursor: pointer;
+}
+#station-table .panel .goback i {
+	margin-top: 3px;
+	margin-left: 10px;
+	width: 24px;
+	height: 24px;
+	color: #039be5;
+}
+#station-table .panel .goback a {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: inline-block;
+	width: 282px;
+	height: 30px;
+	line-height: 30px;
+}
+#station-table .panel .collapsible {
+	margin-bottom: 0 !important;
+	border-radius: 4px;
+}
+#station-table .panel .collapsible-header {
+	height: 36px;
+	min-height: 36px;
+	line-height: 36px;
+	font-weight: bold;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.55);
+}
+#station-table .panel .collapsible-header:hover,
+#station-table .panel .collapsible-header.active {
+	background-color: #fff;
+}
+#station-table .panel .collapsible-body {
+	margin-top: 5px;
+	width: 320px;
+	max-height: 400px;
+	overflow-y: auto;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.6);
+	cursor: pointer;
+}
+#station-table #panel-level07 .submit-plan {
+	margin-top: 5px;
+	width: 320px;
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	background-color: #fff;
+	border-radius: 4px;
+}
+
+
+
+
+
+#map-people {
+	width: 100%;
+	height: 100%;
+}
+#people-table {
+	position: absolute;
+	top: 40px;
+	left: 40px;
+
+	width: 360px;
+}
+#people-table .search-staff {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 1);
+}
+#people-table .search-staff input {
+	margin-left: 10px;
+	width: 300px;
+	height: 40px;
+	border: none;
+	box-shadow: none;
+}
+#people-table .search-staff .search-action {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 40px;
+	border-radius: 0 4px 4px 0;
+	background-color: #3385ff;
+	cursor: pointer;
+}
+#people-table .search-staff .search-action i {
+	margin-top: 5px;
+	margin-left: 5px;
+	font-size: 30px;
+	color: rgba(255, 255, 255, 0.8);
+}
+#people-table .search-staff .search-action i:hover {
+	color: #fff;
+}
+#people-table .panel {
+	margin-top: 10px;
+	width: 320px;
+}
+#people-table .panel .goback {
+	position: relative;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background-color: #fff;
+	cursor: pointer;
+}
+#people-table .panel .goback i {
+	margin-top: 3px;
+	margin-left: 10px;
+	width: 24px;
+	height: 24px;
+	color: #039be5;
+}
+#people-table .panel .goback a {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: inline-block;
+	width: 282px;
+	height: 30px;
+	line-height: 30px;
+}
+#people-table .panel .collapsible {
+	margin-bottom: 0 !important;
+	border-radius: 4px;
+}
+#people-table .panel .collapsible-header {
+	height: 36px;
+	min-height: 36px;
+	line-height: 36px;
+	font-weight: bold;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.55);
+}
+#people-table .panel .collapsible-header:hover,
+#people-table .panel .collapsible-header.active {
+	background-color: #fff;
+}
+#people-table .panel .collapsible-body {
+	margin-top: 5px;
+	width: 320px;
+	max-height: 400px;
+	overflow-y: auto;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+#people-table .panel .collapsible-body tbody tr:hover {
+	cursor: pointer;
+	background-color: rgba(183, 216, 188, 0.9);
+}
+
+
+#people-table #people-chart-all {
+	/*margin: 0 10px;*/
+	width: 220px;
+	height: 240px;
+
+	overflow: show;
+}
+
+
+
+
+
+
+#station-staff-report {
+	position: relative;
+	margin: 2% 3%;
+	width: 94%;
+	height: 90%;
+	border: 1px solid #d9dfe7;
+	border-radius: 5px;
+	background-color: #ffffff; 
+}
+#station-staff-report .header {
+	position: relative;
+	width: 100%;
+	height: 60px;
+	color: #fff;
+	background-color: #59d1a3;
+	border-radius: 5px 5px 0 0;
+}
+#station-staff-report .body {
+	position: absolute;
+	top: 60px;
+	bottom: 0px;
+	left: 0;
+
+	width: 100%;
+	border-radius: 0 0 5px 5px;
+}
+#station-staff-report .body #body-chart {
+	margin: 2% 2%;
+	width: 96%;
+	height: 96%;
+}

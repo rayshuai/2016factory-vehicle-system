@@ -1,0 +1,41 @@
+<li class="bold">
+	<ul class="collapsible collapsible-accordion">
+		<li class="bold">
+			<div class="collapsible-header waves-effect waves-light" ui-sref="affairs.showBus">
+				<i class="material-icons">directions_bus</i>车辆信息管理
+			</div>
+		</li>
+		<li class="bold">
+			<div class="collapsible-header waves-effect waves-light" ui-sref="affairs.showRoutes">
+				<i class="material-icons">all_inclusive</i>线路信息管理
+			</div>
+		</li>
+		<li class="bold">
+			<div class="collapsible-header waves-effect waves-light" ui-sref="affairs.showSchedual">
+				<i class="material-icons">assignment</i>排班信息管理
+			</div>
+		</li>
+		<li class="bold">
+			<div class="collapsible-header waves-effect waves-light" ui-sref="affairs.showReport">
+				<i class="material-icons">assignment</i>导出数据报表
+			</div>
+		</li>
+	</ul>
+</li>
+
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('.tooltipped').tooltip({delay:50});
+			$(".dropdown-button").dropdown({
+				inDuration: 300,
+				outDuration: 150,
+				hover: true,
+				belowOrigin: true
+			});
+			$('.collapsible').collapsible({
+				accordion: false
+			});
+			$('.button-collapse').sideNav();
+		});
+</script>

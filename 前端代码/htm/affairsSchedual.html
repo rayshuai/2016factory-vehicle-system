@@ -1,0 +1,76 @@
+<div id="affairs-schedual">
+	<div class="heading">
+		<p>当前周(<strong ng-bind="week"></strong>)排班表</p>
+		<div class="date-chose">
+			<div class="last-week week-btn tooltipped" style="margin-right:-3px;" ng-click="lastWeek()" data-position="top" data-delay="50" data-tooltip="上一周">
+				<i class="material-icons md-dark center">keyboard_arrow_left</i>
+			</div>
+			<div class="now-week week-btn datepicker" ng-click="getDate()">
+				<input type="date" class="datepicker" ng-model="date" value="2016-08-02">
+				<i class="material-icons">event_note</i>
+			</div>
+			<div class="next-week week-btn tooltipped" data-position="top" data-delay="50" data-tooltip="后一周">
+				<i class="material-icons center">keyboard_arrow_right</i>
+			</div>
+		</div>
+	</div>
+	<div class="body">
+		<div class="schedual-title">
+			<ul class="collection collection1 center">
+				<li class="collection-item"><strong ng-bind="showTime[0]"></strong><br>星期一</li>
+			</ul>
+			<ul class="collection collection2 center">
+				<li class="collection-item"><strong ng-bind="showTime[1]"></strong><br>星期二</li>
+			</ul>
+			<ul class="collection collection3 center">
+				<li class="collection-item"><strong ng-bind="showTime[2]"></strong><br>星期三</li>
+			</ul>
+			<ul class="collection collection4 center">
+				<li class="collection-item"><strong ng-bind="showTime[3]"></strong><br>星期四</li>
+			</ul>
+			<ul class="collection collection5 center">
+				<li class="collection-item"><strong ng-bind="showTime[4]"></strong><br>星期五</li>
+			</ul>
+			<ul class="collection collection6 center">
+				<li class="collection-item"><strong ng-bind="showTime[5]"></strong><br>星期六</li>
+			</ul>
+			<ul class="collection collection7 center">
+				<li class="collection-item"><strong ng-bind="showTime[6]"></strong><br>星期日</li>
+			</ul>
+		</div>
+		<div class="schedual-content">
+			<ul class="collection collection1">
+				<li class="collection-item center" ng-repeat="driver in mon" ng-bind="driver.ename"></li>
+			</ul>
+			<ul class="collection collection2">
+				<li class="collection-item center" ng-repeat="driver in tue" ng-bind="driver.ename"></li>
+			</ul>
+			<ul class="collection collection3">
+				<li class="collection-item center" ng-repeat="driver in wed" ng-bind="driver.ename"></li>
+			</ul>
+			<ul class="collection collection4">
+				<li class="collection-item center" ng-repeat="driver in thu" ng-bind="driver.ename"></li>
+			</ul>
+			<ul class="collection collection5">
+				<li class="collection-item center" ng-repeat="driver in fri" ng-bind="driver.ename"></li>
+			</ul>
+			<ul class="collection collection6">
+				<li class="collection-item center" ng-repeat="driver in sat" ng-bind="driver.ename"></li>
+			</ul>
+			<ul class="collection collection7">
+				<li class="collection-item center" ng-repeat="driver in sun" ng-bind="driver.ename"></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	$(function(){
+		$('.datepicker').pickadate({
+			selectMonths: true,
+			selectYears: 15
+		});
+		$('.tooltipped').tooltip({delay: 50});
+	});
+</script>

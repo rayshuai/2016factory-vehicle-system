@@ -1,0 +1,468 @@
+<div id="map-routes"></div>
+
+<div id="show-routes">
+	<div class="search-route">
+		<input type="text" placeholder="请输入要查询的路线信息" ng-model="searchCondition">
+		<div class="search-action" ng-click="lookForRoute()">
+			<i class="material-icons md-light md-36">search</i>
+		</div>
+	</div>
+
+	<div id="panel-level01" class="panel" style="display:block;">
+		<div class="goback" ng-click="showLevel07()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">进行路线的智能规划</a>
+		</div>
+		<ul class="collapsible" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">&nbsp&nbsp&nbsp&nbsp目前，共有<strong ng-bind="routes.length"></strong>条线路</a>
+				</div>
+				<div class="collapsible-body">
+					<table>
+						<thead>
+							<tr>
+								<td>线路ID</td>
+								<td>人数</td>
+								<td>乘坐率</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="route in routes" ng-click="showOneRoute($index)" style="cursor:pointer;">
+								<td ng-bind="route.car.id"></td>
+								<td ng-bind="route.numOfEmp"></td>
+								<td ng-bind="route.rateOfTake*100+'%'"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+	<div id="panel-level02" class="panel" style="display:none;">
+		<div class="back-all-routes" ng-click="showLevel01()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回全部路线列表</a>
+		</div>
+		<ul class="collapsible" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">&nbsp&nbsp&nbsp&nbsp共找到<strong ng-bind="searchRoutes.length"></strong>条符合条件的线路</a>
+				</div>
+				<div class="collapsible-body">
+					<table>
+						<thead>
+							<tr>
+								<td>线路ID</td>
+								<td>人数</td>
+								<td>乘坐率</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="route in searchRoutes" ng-click="searchShowOneRoute($index)" style="cursor:pointer;">
+								<td ng-bind="route.car.id"></td>
+								<td ng-bind="route.numOfEmp"></td>
+								<td ng-bind="route.rateOfTake*100+'%'"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div id="panel-level03" class="panel" style="display:none;">
+		<div class="back-all-routes" ng-click="showLevel01()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回全部路线列表</a>
+		</div>
+		<ul class="collapsible" data-collapsible="accordion">
+			<li class="active">
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">该路线的车辆详情</a>
+				</div>
+				<div class="collapsible-body">
+					<div class="card blue-grey darken-1">
+				        <div class="card-content white-text">
+				        	<span style="display:inline-block;width:135px;">车牌号：<strong ng-bind="theBus.license">浙A12345</strong></span>
+				        	<span style="display:inline-block;width:135px;">驾驶员：<strong ng-bind="theBus.driver">张水峰</strong></span>
+				        	<br>
+				        	<span style="display:inline-block;width:135px;">车辆品牌：<strong ng-bind="theBus.brand">金龙</strong></span>
+				        	<span style="display:inline-block;width:135px;">座位数：<strong ng-bind="theBus.seat">30</strong></span>
+				        	<span style="display:inline-block;width:100%;">注册日期：<strong ng-bind="theBus.logon">2010-10-25</strong></span>
+				        	<span style="display:inline-block;width:100%;">保险日期：<strong ng-bind="theBus.dated">2018-04-13</strong></span>
+							<span style="display:inline-block;width:100%;">驾驶证：<strong ng-bind="theBus.driver_license">123456789456123456</strong></span>
+				        </div>
+				        <div class="card-action">
+				            <a href="javascript:void(0)" class="update-bus">修改车辆信息</a>
+				        </div>
+				    </div>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">该路线所经过的站点详情</a>
+				</div>
+				<div class="collapsible-body">
+					<ul class="collection" style="cursor:pointer;">
+						<li class="collection-item" ng-repeat="station in theStations" ng-bind="station.s_name" ng-click="showOneSta($index)"></li>
+ 					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div id="panel-level04" class="panel" style="display:none;">
+		<div class="back-search-routes" ng-click="showLevel02()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查询结果列表</a>
+		</div>
+		<ul class="collapsible" data-collapsible="accordion">
+			<li class="active">
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">该路线的车辆详情</a>
+				</div>
+				<div class="collapsible-body">
+					<div class="card blue-grey darken-1">
+				        <div class="card-content white-text">
+				        	<span style="display:inline-block;width:135px;">车牌号：<strong ng-bind="theBus.license">浙A12345</strong></span>
+				        	<span style="display:inline-block;width:135px;">驾驶员：<strong ng-bind="theBus.driver">张水峰</strong></span>
+				        	<br>
+				        	<span style="display:inline-block;width:135px;">车辆品牌：<strong ng-bind="theBus.brand">金龙</strong></span>
+				        	<span style="display:inline-block;width:135px;">座位数：<strong ng-bind="theBus.seat">30</strong></span>
+				        	<span style="display:inline-block;width:100%;">注册日期：<strong ng-bind="theBus.logon">2010-10-25</strong></span>
+				        	<span style="display:inline-block;width:100%;">保险日期：<strong ng-bind="theBus.dated">2018-04-13</strong></span>
+							<span style="display:inline-block;width:100%;">驾驶证：<strong ng-bind="theBus.driver_license">123456789456123456</strong></span>
+				        </div>
+				        <div class="card-action">
+				            <a href="javascript:void(0)" class="update-bus">修改车辆信息</a>
+				        </div>
+				    </div>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">该路线所经过的站点详情</a>
+				</div>
+				<div class="collapsible-body">
+					<ul class="collection">
+						<li class="collection-item" ng-repeat="station in theStations" ng-bind="station.s_name" ng-click="searchShowOneSta($index)" style="cursor:pointer;"></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+	<div id="panel-level05" class="panel" style="display:none;">
+		<div class="back-routes-info" ng-click="showLevel03()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回路线详情页</a>
+		</div>
+		<div class="card blue-grey darken-1">
+			<div class="card-content white-text">
+				<span class="card-title" ng-bind="theSta.name"></span>
+				<br>
+				<span style="display:inline-block;width:120px;">乘车人数：<strong ng-bind="theSta.num"></strong></span>
+				<span style="display:inline-block;width:150px;">到站时间：<strong ng-bind="theSta.date"></strong></span>
+			</div>
+			<div class="card-action">
+				<a href="javascript:void(0)" class="btn delete-sta1">删除</a>
+				<a href="javascript:void(0)" class="btn add-sta1">新增</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="panel-level06" class="panel" style="display:none;">
+		<div class="back-routes-info" ng-click="showLevel04()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回路线详情页</a>
+		</div>
+		<div class="card blue-grey darken-1">
+			<div class="card-content white-text">
+				<span class="card-title" ng-bind="theSta.name"></span>
+				<br>
+				<span style="display:inline-block;width:120px;">乘车人数：<strong ng-bind="theSta.num"></strong></span>
+				<span style="display:inline-block;width:150px;">到站时间：<strong ng-bind="theSta.date"></strong></span>
+			</div>
+			<div class="card-action">
+				<a href="javascript:void(0)" class="btn delete-sta2">删除</a>
+				<a href="javascript:void(0)" class="btn add-sta2">新增</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="panel-level07" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel01()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看当前全部路线</a>
+		</div>
+		<ul class="collapsible" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header" ng-click="showIntelligentOnMap(intelligentRoutes[0].routes)">
+					<a href="javascript:void(0)">
+						平均路程最短的路线方案&nbsp&nbsp&nbsp&nbsp&nbsp<strong ng-click="setToRealRoutes(intelligentRoutes[0])">设置为路线</strong>
+					</a>
+				</div>
+				<div class="collapsible-body">
+					<ul class="collection">
+						<li class="collection-item" ng-repeat="route in intelligentRoutes[0].routes" ng-click="showIntelligentOnMap(route)">路线ID为：<strong ng-bind="route.car.id"></strong></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header" ng-click="showIntelligentOnMap(intelligentRoutes[1].routes)">
+					<a href="javascript:void(0)">
+						路程方差最小的路线方案&nbsp&nbsp&nbsp&nbsp&nbsp<strong ng-click="setToRealRoutes(intelligentRoutes[1])">设置为路线</strong>
+					</a>
+				</div>
+				<div class="collapsible-body">
+					<ul class="collection">
+						<li class="collection-item" ng-repeat="route in intelligentRoutes[0].routes" ng-click="showIntelligentOnMap(route)">路线ID为：<strong ng-bind="route.car.id"></strong></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header" ng-click="showIntelligentOnMap(intelligentRoutes[2].routes)">
+					<a href="javascript:void(0)">
+						车辆乘坐率最高的路线方案&nbsp&nbsp&nbsp&nbsp&nbsp<strong 
+						ng-click="setToRealRoutes(intelligentRoutes[2])">设置为路线</strong>
+					</a>
+				</div>
+				<div class="collapsible-body">
+					<ul class="collection">
+						<li class="collection-item" ng-repeat="route in intelligentRoutes[0].routes" ng-click="showIntelligentOnMap(route)">路线ID为：<strong ng-bind="route.car.id"></strong></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div id="panel-level08" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel07()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回路线的智能规划</a>
+		</div>
+		<ul class="collapsible" data-collapsible="accordion">
+			<li class="active">
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">该路线的车辆详情</a>
+				</div>
+				<div class="collapsible-body">
+					<div class="card blue-grey darken-1">
+				        <div class="card-content white-text">
+				        	<span style="display:inline-block;width:135px;">车牌号：<strong ng-bind="inteOneRoute.car.d_license">浙A12345</strong></span>
+				        	<br>
+				        	<span style="display:inline-block;width:135px;">车辆品牌：<strong ng-bind="inteOneRoute.car.brand">金龙</strong></span>
+				        	<span style="display:inline-block;width:135px;">座位数：<strong ng-bind="inteOneRoute.car.seat">30</strong></span>
+				        	<span style="display:inline-block;width:100%;">注册日期：<strong ng-bind="inteOneRoute.car.logon">2010-10-25</strong></span>
+				        	<span style="display:inline-block;width:100%;">保险日期：<strong ng-bind="inteOneRoute.car.dated">2018-04-13</strong></span>
+				        </div>
+				    </div>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">该路线所经过的站点详情</a>
+				</div>
+				<div class="collapsible-body">
+					<ul class="collection" style="cursor:pointer;">
+						<li class="collection-item" ng-repeat="station in inteOneRoute.stations" ng-bind="station.s_name"></li>
+ 					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	
+
+</div>
+
+<div id="update-bus" class="modal">
+	<div class="modal-content">
+		<div class="row">
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s6">
+			          <input id="update-brand" type="text" class="validate" ng-model="theBus.brand">
+			          <label class="active" for="update-brand">品牌：</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input class="active" id="update-seat" type="text" class="validate" ng-model="theBus.seat">
+			          <label class="active" for="update-seat">座位：</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="update-logon" type="text" class="validate" ng-model="theBus.logon">
+			          <label class="active" for="update-logon">注册日期：</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="update-dated" type="text" class="validate" ng-model="theBus.dated">
+			          <label class="active" for="update-dated">保险日期：</label>
+			        </div>
+			        <div class="input-field col s12">
+			          <input id="update-license" type="text" class="validate" ng-model="theBus.license">
+			          <label class="active" for="update-license">车牌号：</label>
+			        </div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="updateBusInfo()">确认</a>
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+	</div>
+</div>
+
+<div id="update-station" class="modal">
+	<div class="row">
+		<form class="col s12">
+			<div class="row">
+				<div class="input-field col s6">
+					<input type="text" class="validate" ng-bind="theBus.name" disabled>
+				</div>
+				<div class="input-field col s6">
+					<select ng-model="updateSta">
+						<option value="" disabled>请选择你要更换的站点</option>
+						<option ng-repeat="station in stations" ng-bind="station.s_name" value=""></option>
+					</select>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div id="add-station1" class="modal" style="width:300px;">
+	<div class="modal-content">
+		<p>新增站点将添加在该站之后</p>
+		<div class="row">
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s12">
+						<select ng-model="theAddSta.s_id" ng-options="station.s_id as station.s_name for station in stations">
+							<option value="" disabled>请选择你要添加的站点</option>
+						</select>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="addRouteSta()">确认</a>
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+	</div>
+</div>
+
+<div id="add-station2" class="modal" style="width:300px;">
+	<div class="modal-content">
+		<p>新增站点将添加在该站之后</p>
+		<div class="row">
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s12">
+						<select ng-model="theAddSta.s_id" ng-options="station.s_id as station.s_name for station in stations">
+							<option value="" disabled>请选择你要添加的站点</option>
+						</select>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="addSearchRouteSta()">确认</a>
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+	</div>
+</div>
+
+<div id="delete-sta1" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>是否要从路线中移除该站点？</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="deleteRouteSta()">确认</a>
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+	</div>
+</div>
+
+<div id="delete-sta2" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>是否要从路线中移除该站点？</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="deleteSearchRouteSta()">确认</a>
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+	</div>
+</div>
+
+<div id="success-delete-sta" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>已从路线中删除该站点！</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<div id="success-add-sta" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>已在路线中成功添加该站点！</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<div id="success-route" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>路线修改成功！</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<div id="success-bus" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>车辆信息修改成功！</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<div id="success-fitrate" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>当前路线信息：</p>
+		<p>未经过的站点数为:<strong ng-bind="fitrate.numOfNotPass"></strong></p>
+		<p>超载的车辆数为:<strong ng-bind="fitrate.numOfOverload"></strong></p>
+		<p>路线的合适率为:<strong ng-bind="fitrate.fitRate*100+'%'"></strong></p>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		$('.collapsible').collapsible();
+		$('.tooltipped').tooltip({delay: 50});
+		$('#show-routes').find('.update-bus').click(function(){
+			$('#update-bus').openModal();
+		});
+		$('#show-routes').find('.delete-sta1').click(function(){
+			$('#delete-sta1').openModal();
+		});
+		$('#show-routes').find('.delete-sta2').click(function(){
+			$('#delete-sta2').openModal();
+		});
+		$('#show-routes').find('.add-sta1').click(function(){
+			$('#add-station1').openModal();
+		});
+		$('#show-routes').find('.add-sta2').click(function(){
+			$('#add-station2').openModal();
+		});
+		// $('select').material_select();
+	});
+
+	function hidenAll(){
+		$('#show-routes').find('.panel').each(function(){
+			console.log(this,$(this));
+		})
+	}
+</script>

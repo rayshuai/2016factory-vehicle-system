@@ -1,0 +1,59 @@
+<div id="bus-rate-report">
+	<div class="header">
+		<form class="row">
+			<div class="input-field col s2 m2 offset-m1">
+				<input type="date" value="2016-08-01" class="datepicker" ng-model="date">
+			</div>
+			<div class="input-field col s6 m6 row">
+				<p class="col s4">
+					<input type="radio" name="style" id="_day" value="1" ng-model="style">
+					<label for="_day">日乘坐率</label>
+				</p>
+				<p class="col s4">
+					<input type="radio" name="style" id="_week" value="2" ng-model="style">
+					<label for="_week">周乘坐率</label>
+				</p>
+				<p class="col s4">
+					<input type="radio" name="style" id="_mouth" value="3" ng-model="style">
+					<label for="_mouth">月乘坐率</label>
+				</p>
+			</div>
+			<div class="input-field col s2 m2">
+				<button class="btn waves-effect waves-light" type="submit" name="action" ng-click="getChartData()">Submit
+					<i class="mdi-content-send right"></i>
+				</button>
+			</div>
+		</form>
+	</div>
+	<div class="body">
+		<div id="body-chart"></div>
+	</div>
+	<div class="fixed-action-btn" style="right:1%;bottom:3%;">
+		<a class="btn-floating btn-large red tooltipped waves-effect waves-lignt export" data-position="left" data-delay="50" data-tooltip="导出报表" href="javascript:viod(0)">
+			<i class="material-icons">assessment</i>
+		</a>
+	</div>
+</div>
+
+<div id="success-export" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>报表已成功导出！</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class=" modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function(){		
+		$('.datepicker').pickadate({
+		selectMonths: true, // Creates a dropdown to control month
+		selectYears: 15 // Creates a dropdown of 15 years to control year
+		}); 
+		$('.collapsible').collapsible();
+		$('.tooltipped').tooltip({delay:50});
+		$('#bus-rate-report').find('.export').click(function(){
+			$('#success-export').openModal();
+		});
+	});
+</script>

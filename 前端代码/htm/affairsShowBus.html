@@ -1,0 +1,181 @@
+<div id="showBus-all">
+	<div class="heading">
+		<p>车辆信息管理</p>
+		<ul>
+			<li class="add"><a href="javascript:void(0)"><i class="material-icons center">add_circle_outline</i></a></li>
+			<li class="search"><a href="javascript:void(0)"><i class="material-icons center">search</i></a></li>
+		</ul>
+	</div>
+	<div class="bus-info">
+		<table>
+			<thead>
+				<tr>
+					<td>车牌号</td>
+					<td>车辆品牌</td>
+					<td>座位数</td>
+					<td>注册日期</td>
+					<td>保险日期</td>
+					<td>操作</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="search-bus-result" ng-repeat="bus in searchResult">
+					<td ng-bind="bus.d_license"></td>
+					<td ng-bind="bus.brand"></td>
+					<td ng-bind="bus.seat"></td>
+					<td ng-bind="bus.logon"></td>
+					<td ng-bind="bus.dated"></td>
+					<td class="update-bus"><a href="javascript:void(0)" ng-click="getUpdateBus(bus)">修改</a></td>
+					<td class="delete-bus"><a href="javascript:void(0)" ng-click="getDeleteBus(bus)">删除</a></td>
+				</tr>
+				<tr ng-repeat="bus in buses">
+					<td ng-bind="bus.d_license"></td>
+					<td ng-bind="bus.brand"></td>
+					<td ng-bind="bus.seat"></td>
+					<td ng-bind="bus.logon"></td>
+					<td ng-bind="bus.dated"></td>
+					<td class="update-bus"><a href="javascript:void(0)" ng-click="getUpdateBus(bus)">修改</a></td>
+					<td class="delete-bus"><a href="javascript:void(0)" ng-click="getDeleteBus(bus)">删除</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div id="update-bus-modal" class="modal">
+	<div class="modal-content">
+		<div class="row">
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s6">
+			          <input id="update-brand" type="text" class="validate" ng-model="updateBusInfo.brand">
+			          <label class="active" for="update-brand">品牌：</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input class="active" id="update-seat" type="text" class="validate" ng-model="updateBusInfo.seat">
+			          <label class="active" for="update-seat">座位：</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="update-logon" type="text" class="validate" ng-model="updateBusInfo.logon">
+			          <label class="active" for="update-logon">注册日期：</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="update-dated" type="text" class="validate" ng-model="updateBusInfo.dated">
+			          <label class="active" for="update-dated">保险日期：</label>
+			        </div>
+			        <div class="input-field col s12">
+			          <input id="update-license" type="text" class="validate" ng-model="updateBusInfo.d_license">
+			          <label class="active" for="update-license">车牌号：</label>
+			        </div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+      	<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat agree-update-bus">提交</a>
+	</div>
+</div>
+
+<div id="delete-bus-modal" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>确认要删除该条记录？</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+      	<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat agree-delete-bus">提交</a>
+	</div>
+</div>
+
+<div id="add-bus-modal" class="modal">
+	<div class="modal-content">
+		<div class="row">
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s6">
+			          <input id="add-brand" type="text" class="validate" ng-model="addBusInfo.brand">
+			          <label for="add-brand">品牌：</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="add-seat" type="text" class="validate" ng-model="addBusInfo.seat">
+			          <label for="add-seat">座位：</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="add-logon" type="text" class="validate" ng-model="addBusInfo.logon">
+			          <label for="add-logon">注册日期：</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="add-dated" type="text" class="validate" ng-model="addBusInfo.dated">
+			          <label for="add-dated">保险日期：</label>
+			        </div>
+			        <div class="input-field col s12">
+			          <input id="add-license" type="text" class="validate" ng-model="addBusInfo.d_license">
+			          <label for="add-license">车牌号：</label>
+			        </div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+      	<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat agree-add-bus">提交</a>
+	</div>
+</div>
+
+<div id="search-bus-modal" class="modal">
+	<div class="modal-content">
+		<div class="row">
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s12">
+						<input type="text" id="bus-condition" ng-model="searchCondition.condition">
+						<label for="bus-condition">请输入要查询的车辆条件：</label>
+					</div>
+					<p>
+				      <input class="with-gap" id="bus-brand" name="search-style" type="radio" value="1" ng-model="searchCondition.way" />
+				      <label for="bus-brand">按车辆ID查询</label>
+				      <input class="with-gap" id="bus-license" name="search-style" type="radio" value="2" ng-model="searchCondition.way">
+				      <label for="bus-license">按品牌查询</label>
+				    </p>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+      	<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat agree-search-bus">提交</a>
+	</div>
+</div>
+
+<div id="success-delelte" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>成功删除该车辆信息！</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<div id="success-update" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>车辆信息修改成功！</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<div id="success-add" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>成功添加车辆！</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	
+</script>

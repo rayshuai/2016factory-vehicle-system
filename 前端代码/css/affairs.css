@@ -1,0 +1,467 @@
+#showBus-all {
+	position: relative;
+	margin: 2% 3%;
+
+	width: 94%;
+	height: 90%;
+
+	border: 1px solid #d9dfe7;
+	border-radius: 5px;
+	background-color: #ffffff;
+}
+#showBus-all .heading {
+	position: relative;
+	width: 100%;
+	height: 40px;
+
+	color: #fff;
+	background-color: #59d1a3;
+	border-radius: 5px 5px 0 0;
+}
+#showBus-all .heading p {
+	padding-left: 10px;
+	width: 200px;
+	height: 40px;
+
+	line-height: 40px;
+}
+#showBus-all .heading ul {
+	position: absolute;
+	top: 0;
+	right: 5px;
+
+	width: 100px;
+	height: 40px;
+}
+#showBus-all .heading ul li {
+	display: inline-block;
+	height: 40px;
+	width: 50px;
+
+	line-height: 40px;
+}
+#showBus-all .heading ul li.add {
+	position: absolute;
+	top: 0;
+	left: 0;
+}	
+#showBus-all .heading ul li.search {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#showBus-all .heading ul li i {
+	position: absolute;
+	top: 8px;
+	left: 13px;
+}
+#showBus-all .bus-info {
+	position: absolute;
+	top: 40px;
+	left: 0;
+	bottom: 0;
+
+	width: 100%;
+	overflow: auto;
+}
+#showBus-all .bus-info table{
+	width: 100%;
+	/*height: 100%;*/
+
+	overflow: auto;
+}
+#showBus-all .bus-info table tbody tr:hover {
+	background-color: #eee;
+}
+#showBus-all .bus-info table tbody tr.search-bus-result {
+	background-color: #86E0D8;
+}
+
+
+
+#map-routes {
+	width: 100%;
+	height: 100%;
+
+	background-color: #36CE39;
+}
+#show-routes {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+
+	width: 360px;
+}
+#show-routes .search-route {
+	position: relative;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 40px;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 1);
+}
+#show-routes .search-route input {
+	margin-left: 10px;
+	width: 300px;
+	height: 40px;
+	border: none;
+	box-shadow: none;
+}
+#show-routes .search-route .search-action {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 40px;
+	border-radius: 0 4px 4px 0;
+	background-color: #3385ff;
+	cursor: pointer;
+}
+#show-routes .search-route .search-action:hover {
+	background-color: #2e77e5;
+}
+#show-routes .search-route .search-action i {
+	margin-top: 5px;
+	margin-left: 5px;
+	font-size: 30px;
+	color: rgba(255, 255, 255, 0.8);
+}
+#show-routes .search-route .search-action i:hover {
+	color: rgba(255, 255, 255, 1);
+}
+#show-routes .panel {
+	margin-top: 10px;
+	width: 320px;
+/*	border-radius: 5px;*/
+}
+#show-routes #panel-level01 .collapsible,
+#show-routes #panel-level02 .collapsible,
+#show-routes #panel-level03 .collapsible,
+#show-routes #panel-level04 .collapsible {
+	margin-bottom: 0 !important;
+	border-radius: 4px;
+}
+#show-routes #panel-level01 .collapsible-header,
+#show-routes #panel-level02 .collapsible-header,
+#show-routes #panel-level03 .collapsible-header,
+#show-routes #panel-level04 .collapsible-header {
+	font-weight: bold;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.55);
+}
+#show-routes #panel-level01 .collapsible-header:hover,
+#show-routes #panel-level01 .collapsible-header.active,
+#show-routes #panel-level02 .collapsible-header:hover,
+#show-routes #panel-level02 .collapsible-header.active,
+#show-routes #panel-level03 .collapsible-header:hover,
+#show-routes #panel-level03 .collapsible-header.active,
+#show-routes #panel-level04 .collapsible-header:hover,
+#show-routes #panel-level04 .collapsible-header.active {
+	background-color: rgba(255, 255, 255, 1);
+}
+#show-routes #panel-level01 .collapsible-body {
+	margin-top: 5px;
+	width: 320px;
+	max-height: 480px;
+	overflow-y: auto;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.55);
+}
+#show-routes #panel-level02 .back-all-routes,
+#show-routes #panel-level03 .back-all-routes,
+#show-routes #panel-level04 .back-search-routes,
+#show-routes #panel-level05 .back-routes-info,
+#show-routes #panel-level06 .back-routes-info {
+	position: relative;
+	cursor: pointer;
+	width: 320px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #fff;
+}
+#show-routes #panel-level02 .back-all-routes a,
+#show-routes #panel-level03 .back-all-routes a,
+#show-routes #panel-level04 .back-search-routes a,
+#show-routes #panel-level05 .back-routes-info a,
+#show-routes #panel-level06 .back-routes-info a {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: inline-block;
+	width: 282px;
+	height: 30px;
+	line-height: 30px;
+}
+#show-routes #panel-level02 .back-all-routes i,
+#show-routes #panel-level03 .back-all-routes i,
+#show-routes #panel-level04 .back-search-routes i,
+#show-routes #panel-level05 .back-routes-info i,
+#show-routes #panel-level06 .back-routes-info i {
+	margin-top: 3px;
+	margin-left: 10px;
+	width: 24px;
+	height: 24px;
+	color: #039be5;
+}
+#show-routes #panel-level02 .collapsible-body {
+	margin-top: 5px;
+	width: 320px;
+	max-height: 440px;
+	overflow-y: auto;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.55);
+}
+#show-routes #panel-level03 .collapsible-body {
+	margin-top: 5px;
+	width: 320px;
+	max-height: 400px;
+	overflow-y: auto;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.55);
+}
+#show-routes .panel .goback {
+	position: relative;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background-color: #fff;
+	cursor: pointer;
+}
+#show-routes .panel .goback i {
+	margin-top: 3px;
+	margin-left: 10px;
+	width: 24px;
+	height: 24px;
+	color: #039be5;
+}
+#show-routes .panel .goback a {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: inline-block;
+	width: 282px;
+	height: 30px;
+	line-height: 30px;
+}
+#show-routes .panel .collapsible {
+	margin-bottom: 0 !important;
+	border-radius: 4px;
+}
+#show-routes .panel .collapsible-header {
+	height: 36px;
+	min-height: 36px;
+	line-height: 36px;
+	font-weight: bold;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.55);
+}
+#show-routes .panel .collapsible-header:hover,
+#station-table .panel .collapsible-header.active {
+	background-color: #fff;
+}
+#show-routes .panel .collapsible-body {
+	margin-top: 5px;
+	width: 320px;
+	max-height: 400px;
+	overflow-y: auto;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.6);
+	cursor: pointer;
+}
+#show-routes .panel table tbody tr:hover {
+	cursor: pointer;
+	background-color: rgba(183, 216, 188, 0.9);
+}
+
+
+
+::-webkit-scrollbar {
+	width: 0;
+}
+
+
+
+
+
+#affairs-schedual {
+	position: relative;
+	margin: 2% 3%;
+	width: 94%;
+	height: 90%;
+	border: 1px solid #d9dfe7;
+	border-radius: 5px;
+	background-color: #ffffff;
+}
+#affairs-schedual .heading {
+	position: relative;
+	width: 100%;
+	height: 40px;
+	color: #fff;
+	background-color: #59d1a3;
+	border-radius: 5px 5px 0 0;
+}
+#affairs-schedual .heading p {
+	padding-left: 10px;
+	width: 300px;
+	height: 40px;
+	line-height: 40px;
+}
+#affairs-schedual .body {
+	position: absolute;
+	top: 40px;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+#affairs-schedual .body .schedual-title {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 60px;
+}
+#affairs-schedual .body .schedual-content {
+	position: absolute;
+	top: 60px;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+#affairs-schedual .body .schedual-content .collection, #affairs-schedual .body .schedual-title .collection{
+	margin: 0 !important;
+	width: 14.285%;
+	overflow-y: auto;
+}
+#affairs-schedual .body .schedual-content .collection1, #affairs-schedual .body .schedual-title .collection1 {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	overflow-y: auto;
+}
+#affairs-schedual .body .schedual-content .collection2, #affairs-schedual .body .schedual-title .collection2 {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	overflow-y: auto;
+	left: 14.285%;
+}
+#affairs-schedual .body .schedual-content .collection3, #affairs-schedual .body .schedual-title .collection3 {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	overflow-y: auto;
+	left: 28.57%;
+}
+#affairs-schedual .body .schedual-content .collection4, #affairs-schedual .body .schedual-title .collection4 {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	overflow-y: auto;
+	left: 42.85%;
+}
+#affairs-schedual .body .schedual-content .collection5, #affairs-schedual .body .schedual-title .collection5 {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	overflow-y: auto;
+	left: 57.14%;
+}
+#affairs-schedual .body .schedual-content .collection6, #affairs-schedual .body .schedual-title .collection6 {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	overflow-y: auto;
+	left: 71.42%;
+}
+#affairs-schedual .body .schedual-content .collection7, #affairs-schedual .body .schedual-title .collection7 {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	overflow-y: auto;
+	right: 0;	
+}
+#affairs-schedual .heading .date-chose {
+	position: absolute;
+	top: 5px;
+	right: 20px;
+
+	width: 92px;
+	height: 30px;
+	border-radius: 2px;
+	background-color: #fff;
+}
+#affairs-schedual .heading .date-chose .week-btn {
+	display: inline-block;
+	width: 30px;
+	height: 100%;
+	cursor: pointer;
+}
+#affairs-schedual .heading .date-chose .week-btn i {
+	margin: 3px;
+	color: rgba(0, 0, 0, 0.64);
+}
+#affairs-schedual .heading .date-chose .now-week {
+	width: 32px;
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+}
+#affairs-schedual .heading .date-chose .now-week input {
+	position: absolute;
+	top: 0;
+	left: 31px;
+
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-bottom: none;
+	margin: 0;
+	color: rgba(255, 255, 255, 0);
+	cursor: pointer;
+}
+#affairs-schedual .heading .date-chose .next-week {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+
+
+
+
+
+
+
+#bus-rate-report {
+	position: relative;
+	margin: 2% 3%;
+	width: 94%;
+	height: 90%;
+	border: 1px solid #d9dfe7;
+	border-radius: 5px;
+	background-color: #ffffff; 
+}
+#bus-rate-report .header {
+	position: relative;
+	width: 100%;
+	height: 60px;
+	color: #fff;
+	background-color: #59d1a3;
+	border-radius: 5px 5px 0 0;
+}
+#bus-rate-report .body {
+	position: absolute;
+	top: 60px;
+	bottom: 0px;
+	left: 0;
+
+	width: 100%;
+	border-radius: 0 0 5px 5px;
+}
+#bus-rate-report .body #body-chart {
+	margin: 2% 2%;
+	width: 96%;
+	height: 92%;
+}

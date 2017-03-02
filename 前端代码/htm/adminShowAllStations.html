@@ -1,0 +1,452 @@
+<div id="map-stations"></div>
+<div id="station-table">
+	<div class="search-station">
+		<input type="text" placeholder="请输入要查询的站点/停车点信息" ng-model="searchCondition">
+		<div class="search-action" ng-click="searchStation()">
+			<i class="material-icons md-light md-36">search</i>
+		</div>
+	</div>
+
+	<div id="panel-level01" class="panel">
+		<!-- <div class="goback" ng-click="showLevel07()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">进行站点智能规划</a>
+		</div> -->
+		<ul class="collapsible" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">目前，共有<strong ng-bind="stations.length"></strong>个站点</a>
+				</div>
+				<div class="collapsible-body">
+					<ul class="collection">
+						<li class="collection-item" ng-repeat="station in stations" ng-bind="station.name" ng-click="showStation($index)"></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">目前，共有<strong ng-bind="altermativeStations.length"></strong>个停车点</a>
+				</div>
+				<div class="collapsible-body">
+					<ul class="collection">
+						<li class="collection-item" ng-repeat="station in altermativeStations" ng-bind="station.name" ng-click="showStopStation($index)"></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div id="panel-level02" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel01()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看全部站点和停车点</a>
+		</div>
+		<ul class="collapsible" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">共找到<strong ng-bind="searchReasult.length"></strong>条搜索结果</a>
+				</div>
+				<div class="collapsible-body">
+					<ul class="collection">
+						<li class="collection-item" ng-repeat="station in searchResult" ng-bind="station.name" ng-click="showStation2($index)"></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div id="panel-level03" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel01()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看全部站点和停车点</a>
+		</div>
+		<div class="card blue-grey darken-1">
+			<div class="card-content white-text">
+				<span class="card-title" ng-bind="stationInfo.name"></span>
+				<br>
+				<span class="col row s12">编号：<strong ng-bind="stationInfo.id"></strong></span>
+				<span class="col row s12">名称：<strong ng-bind="stationInfo.name"></strong></span>
+				<span class="col row s12">地址：<strong ng-bind="stationInfo.address"></strong></span>
+				<span class="col row s12">乘车人数：<strong ng-bind="stationInfo.num"></strong></span>
+			</div>
+			<div class="card-action">
+				<a href="javascript:void(0)" class="card-delete">删除</a>
+				<a href="javascript:void(0)" class="card-update">修改</a>
+				<a href="javascript:void(0)" ng-click="showLevel08()">查看乘车人员</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="panel-level04" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel02()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看搜索结果</a>
+		</div>
+		<div class="card blue-grey darken-1">
+			<div class="card-content white-text">
+				<span class="card-title" ng-bind="stationInfo.name"></span>
+				<br>
+				<span class="col row s12">编号：<strong ng-bind="stationInfo.id"></strong></span>
+				<span class="col row s12">名称：<strong ng-bind="stationInfo.name"></strong></span>
+				<span class="col row s12">地址：<strong ng-bind="stationInfo.address"></strong></span>
+				<span class="col row s12">乘车人数：<strong ng-bind="stationInfo.num"></strong></span>
+			</div>
+			<div class="card-action">
+				<a href="javascript:void(0)" class="card-delete">删除</a>
+				<a href="javascript:void(0)" class="card-update">修改</a>
+				<a href="javascript:void(0)" ng-click="showLevel09()">查看乘车人员</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="panel-level05" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel01()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看全部站点和停车点</a>
+		</div>
+		<div class="card blue-grey darken-1">
+			<div class="card-content white-text">
+				<span class="card-title" ng-bind="stopStationInfo.name"></span>
+				<br>
+				<span class="col row s12">编号：<strong ng-bind="stopStationInfo.id"></strong></span>
+				<span class="col row s12">名称：<strong ng-bind="stopStationInfo.name"></strong></span>
+				<span class="col row s12">地址：<strong ng-bind="stopStationInfo.address"></strong></span>
+			</div>
+			<div class="card-action">
+				<a href="javascript:void(0)" class="card-delete">删除</a>
+				<a href="javascript:void(0)" class="card-update">修改</a>
+				<a href="javascript:void(0)" class="set-stop1">设置为站点</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="panel-level06" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel02()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看搜索结果</a>
+		</div>
+		<div class="card blue-grey darken-1">
+			<div class="card-content white-text">
+				<span class="card-title">杭州列车停车点</span>
+				<br>
+				<span class="col row s12">编号：<strong>2016003</strong></span>
+				<span class="col row s12">名称：<strong>杭州列车停车点</strong></span>
+				<span class="col row s12">地址：<strong>杭州电子科技大学生活区南门</strong></span>
+			</div>
+			<div class="card-action">
+				<a href="javascript:void(0)" class="card-delete">删除</a>
+				<a href="javascript:void(0)" class="card-update">修改</a>
+				<a href="javascript:void(0)" class="set-stop2">设置为站点</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="panel-level07" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel01()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看全部站点和停车点</a>
+		</div>
+		<ul class="collapsible" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header active">
+					<a href="javascript:void(0)">规划方案</a>
+				</div>
+				<div class="collapsible-body">
+					<table class="highlight centered">
+						<thead>
+							<tr>
+								<td style="text-align:center;">站点名称</td>
+								<td style="text-align:center;">站点地址</td>
+								<td style="text-align:center;">人数</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="station in stations">
+								<td ng-bind="station.name"></td>
+								<td ng-bind="station.address"></td>
+								<td>48</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="submit-plan">
+						<a href="javascript:void(0)">一键规划</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div id="panel-level08" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel03()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看站点详情</a>
+		</div>
+		<div class="collapsible" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">该站点共有<strong ng-bind="stationInfo.num"></strong>名员工</a>
+				</div>
+				<div class="collapsible-body">
+					<ul class="collection">
+						<li class="collection-item" ng-repeat="passenger in stationInfo.passengers" ng-bind="passenger.ename"></li>
+					</ul>
+				</div>
+			</li>
+		</div>
+	</div>
+
+	<div id="panel-level09" class="panel" style="display:none;">
+		<div class="goback" ng-click="showLevel04()">
+			<i class="material-icons center">keyboard_arrow_left</i>
+			<a href="javascript:void(0)">返回查看站点详情</a>
+		</div>
+		<div class="collapsible" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header">
+					<a href="javascript:void(0)">该站点共有<strong ng-bind="stationInfo.num"></strong>名员工</a>
+				</div>
+				<div class="collapsible-body">
+					<ul class="collection">
+						<li class="collection-item" ng-repeat="passenger in stationInfo.passengers" ng-bind="passenger.ename"></li>
+					</ul>
+				</div>
+			</li>
+		</div>
+	</div>
+
+</div>
+
+
+<div id="delete-station" class="modal" style="width:300px;">
+	<div class="modal-content">
+		<div class="row">
+			<form class="col s12">
+				<div class="row">
+					<p>确认删除站点？</p>
+				</div>
+				<div class="row" style="width:300px;">
+					<div class="input-field col s6">
+						<input type="checkbox" id="delete-sta-and-stop" checked>
+						<label for="delete-sta-and-stop">同时删除停车点</label>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal-footer">
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat agree-delete-station">确认</a>
+    </div>
+</div>
+
+<div id="update-station" class="modal" style="width:320px;">
+	<div class="modal-content">
+		<form class="row">
+			<div class="input-field col s10 offset-s1">
+	          <input placeholder="请输入修改后的站点名称" id="update-station-name" type="text" class="validate" ng-model="updateStaInfo.name">
+	          <label for="update-station-name" class="active">站点名称</label>
+	        </div>
+		</form>
+	</div>
+	<div class="modal-footer">
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat agree-update-station">提交</a>
+    </div>
+</div>
+
+<div id="show-coordinates" class="modal" style="width:200px;">
+	<div class="modal-content">
+		<p class="lng"></p>
+		<p class="lat"></p>
+	</div>
+</div>
+
+<div id="add-stations" class="modal">
+	<div class="modal-content">
+		<form class="row">
+			<div class="input-field col s12">
+	          <input placeholder="请输入新的站点名称" id="add-station-name" type="text" class="validate" ng-model="addStaInfo.name">
+	          <label for="add-station-name" class="active">站点名称</label>
+	        </div>
+	        <div class="row">
+	        	<p class="center">该站点的位置已获取</p>
+	        </div>
+	        <div class="input-field col s6">
+	          <input placeholder="Placeholder" id="add-station-lng" type="text" class="validate" ng-model="addStaInfo.x" disabled>
+	          <label for="add-station-lng" class="active">经度</label>
+	        </div>
+	        <div class="input-field col s6">
+	          <input placeholder="Placeholder" id="add-station-lat" type="text" class="validate" ng-model="addStaInfo.y" disabled>
+	          <label for="add-station-lat" class="active">纬度</label>
+	        </div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat ">取消</a>
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat agree-add-station">确认</a>
+	</div>
+</div>
+
+<div id="delete-stop-sta1" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>确认删除该停车点？</p>
+	</div>
+	<div class="modal-footer">
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat agree-delete-station" ng-click="deleteStopSta()">确认</a>
+    </div>
+</div>
+
+<div id="delete-stop-sta2" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>确认删除该停车点？</p>
+	</div>
+	<div class="modal-footer">
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat agree-delete-station" ng-click="deleteStopSta()">确认</a>
+    </div>
+</div>
+
+<div id="stop-to-station1" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>是否同意将该停车点设置为站点？</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+     	<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat stop-to-station1" ng-click="setStopToStation()">确认</a>
+	</div>
+</div>
+
+<div id="stop-to-station2" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>是否同意将该停车点设置为站点？</p>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+     	<a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat stop-to-station2" ng-click="setStopToStation()">确认</a>
+	</div>
+</div>
+
+<div id="success-stop-to-station" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>已成功将该停车点设置为站点！</p>
+	</div>
+	<div id="modal-footer">
+		<a href="javascrit:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<div id="update-stop1" class="modal" style="width:320px;">
+	<div class="modal-content">
+		<form class="row">
+			<div class="input-field col s10 offset-s1">
+	          <input placeholder="请输入修改后的站点名称" id="update-station-name" type="text" class="validate" ng-model="updateStaInfo.name">
+	          <label for="update-station-name" class="active">停车点名称</label>
+	        </div>
+		</form>
+	</div>
+	<div class="modal-footer">
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat agree-update-stop" ng-click="showLevel01()">提交</a>
+    </div>
+</div>
+
+<div id="update-stop2" class="modal" style="width:320px;">
+	<div class="modal-content">
+		<form class="row">
+			<div class="input-field col s10 offset-s1">
+	          <input placeholder="请输入修改后的站点名称" id="update-station-name" type="text" class="validate" ng-model="updateStaInfo.name">
+	          <label for="update-station-name" class="active">停车点名称</label>
+	        </div>
+		</form>
+	</div>
+	<div class="modal-footer">
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+      <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat agree-update-stop" ng-click="showLevel02(">提交</a>
+    </div>
+</div>
+
+<div id="success-delete" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>删除成功！</p>
+	</div>
+	<div id="modal-footer">
+		<a href="javascrit:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<div id="success-update" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>修改成功！</p>
+	</div>
+	<div id="modal-footer">
+		<a href="javascrit:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<div id="success-add" class="modal" style="width:220px;">
+	<div class="modal-content">
+		<p>添加成功！</p>
+	</div>
+	<div id="modal-footer">
+		<a href="javascrit:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<div id="is-OK1" class="modal" style="width:280px;">
+	<div class="modal-content">
+		<p>当前人员站点不匹配，建议重新同步</p>
+	</div>
+	<div id="modal-footer">
+		<a href="javascrit:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">确认</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		$('.collapsible').collapsible();
+		$('.datepicker').pickadate({
+			selectMonths: true,
+			selectYears: 15
+		});
+		$('select').material_select();
+
+		$('#panel-level03').find('.card-delete').click(function(){
+			$('#delete-station').openModal();
+		});
+		$('#panel-level03').find('.card-update').click(function(){
+			$('#update-station').openModal();
+		});
+		$('#panel-level04').find('.card-delete').click(function(){
+			$('#delete-station').openModal();
+		});
+		$('#panel-level04').find('.card-update').click(function(){
+			$('#update-station').openModal();
+		});
+		$('#panel-level05').find('.card-delete').click(function(){
+			$('#delete-stop-sta1').openModal();
+		});
+		$('#panel-level05').find('.card-update').click(function(){
+			$('#update-stop1').openModal();
+		});
+		$('#panel-level06').find('.card-delete').click(function(){
+			$('#delete-stop-sta2').openModal();
+		});
+		$('#panel-level06').find('.card-update').click(function(){
+			$('#update-stop2').openModal();
+		});
+
+		$('#station-table').find('.set-stop1').click(function(){
+			$('#stop-to-station1').openModal();
+		});
+		$('#station-table').find('.set-stop2').click(function(){
+			$('#stop-to-station2').openModal();
+		});
+		$('#stop-to-station1').find('.stop-to-station1').click(function(){
+			$('#success-stop-to-station').openModal();
+		});
+		$('#stop-to-station2').find('.stop-to-station2').click(function(){
+			$('#success-stop-to-station').openModal();
+		});
+	})
+</script>

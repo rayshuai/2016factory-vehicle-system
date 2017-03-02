@@ -1,0 +1,36 @@
+.login{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -180px;
+	margin-left: -150px;
+
+	width: 300px;
+	height: 220px;
+	z-index: 1;
+}
+.login .input-field{
+	color: #fff;
+}
+.login h1{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 60px;
+
+	text-align: center;
+	line-height: 60px;
+	font-size: 42px;
+	color: #fff;
+	font-family: '华文行楷';
+	text-shadow: 2px 2px 2px #3a49b1;
+}
+.login button{
+	margin-top: 50px;
+	margin-left: 85px;
+
+	width: 130px;
+
+	/*font-family: '华文行楷';*/
+	color: #fff;
+	background-color: #455a64;
+}
